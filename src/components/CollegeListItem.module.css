@@ -1,0 +1,44 @@
+.CollegeListItem {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	font-size: 18px;
+	background-color: transparent;
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	padding: 10px;
+	color: #3A4D95;
+	box-sizing: border-box;
+}
+
+.CollegeListItem a {
+	background-color: transparent;
+	outline: none;
+	border: none;
+	color: #E56C5B;
+	font-size: 18px;
+}
+
+.CollegeListItem a:hover {
+	cursor: pointer;
+	opacity: 0.75;
+}
+
+.CollegeDetails {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.CollegeDetails:first-child {
+	text-transform: capitalize;
+}
+
+.CollegeDetails span {
+	color: grey;
+	font-size: 14px;
+	margin-top: 10px;
+}

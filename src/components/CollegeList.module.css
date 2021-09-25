@@ -1,0 +1,14 @@
+.CollegeList {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 10px;
+	box-shadow: 0 3px 6px 0 rgb(58 77 149 / 16%);
+	margin: 10px auto;
+	width: 60%;
+}
+
+.CollegeList div:last-child {
+	border-bottom: none;
+}
