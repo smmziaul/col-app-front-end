@@ -1,0 +1,30 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.collegeDetailsContainer {
+  display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 10px;
+	box-shadow: 0 3px 6px 0 rgb(58 77 149 / 16%);
+	margin: 10px auto;
+	width: 60%;
+}
+
+h2 {
+  color: DodgerBlue;
+}

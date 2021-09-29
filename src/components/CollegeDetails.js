@@ -1,103 +1,101 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router'
-import Carousel from './Carousel';
+import { getCollegeDetails } from '../services/details';
+// import Carousel from './Carousel';
+import classes from './CollegeDetails.module.css';
 import raw_json from './sample_raw_json';
 
 function CollegeDetails(props) {
-	// use this id to get college by id and find similar colleges
-	const id = props.location.state.id;
-
-
-
-	const [similarColleges, setSimilarColleges] = useState([]);
-
+	const collegeId = props.location.state._id;
 	const [collegeDetails, setCollegeDetails] = useState([]);
 
-
-
 	useEffect(() => {
-		// you might have trouble using an async function here. See how to use async function inside useEffect
-		// replace similarColleges with data from api call to get similar colleges
-		const similarColleges = [
-			{
-				name: 'molestias et eveniet',
-				location: 'Lake Cyril',
-				id: 39465
-			},
-			{
-				name: 'Non est doloremque a provident voluptatem molestias quam similique',
-				location: 'South Reece',
-				id: 47835
-			},
-			{
-				name: 'molestias quisquam dicta',
-				location: 'Pfannerstillborough',
-				id: 19658
-			},
-			{
-				name: 'a voluptatum fuga',
-				location: 'Maximeside',
-				id: 45626
-			},
-			{
-				name: 'corporis eaque aperiam',
-				location: 'Violettemouth',
-				id: 30976
-			},
-			{
-				name: 'non quos dolorum',
-				location: 'Port Kaci',
-				id: 99985
-			},
-			{
-				name: 'velit et consequuntur',
-				location: 'Haleymouth',
-				id: 99356
-			},
-			{
-				name: 'a fuga error',
-				location: 'Everettbury',
-				id: 45928
-			},
-			{
-				name: 'repellendus optio tempora',
-				location: 'Port Lonzotown',
-				id: 47914
-			},
-			{
-				name: 'et molestiae aut',
-				location: 'South Valentine',
-				id: 157
-			}
-		];
-
-		setCollegeDetails(raw_json.data);
-		setSimilarColleges(similarColleges);
-	}, []);
+		let mounted = true;
+		getCollegeDetails(collegeId)
+			.then(collegeDetails => {
+				if (mounted) {
+					setCollegeDetails(collegeDetails.data)
+				}
+			})
+		return () => mounted = false;
+	}, [])
 
 	return (
-		<div>
-			<div>college details should come here for {id}</div>
+		<div className={classes.collegeDetailsContainer}>
+			<h2>
+				College Details
+			</h2>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Established in</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Country</th>
+					<th># of Students</th>
+				</tr>
+				<tr>
+					<td>{collegeDetails.name}</td>
+					<td>{collegeDetails.year}</td>
+					<td>{collegeDetails.city}</td>
+					<td>{collegeDetails.state}</td>
+					<td>{collegeDetails.country}</td>
+					<td>{collegeDetails.no_of_students}</td>
+				</tr>
+			</table>
 
+			<h2>
+				Courses Offered
+			</h2>
 
+			<div>
+				<ol>
+					{raw_json.data.courses.map(course => {
+						return <li key={course}>{course}</li>
+					})}
+				</ol>
+			</div>
+
+			<h2>
+				Students On Roll
+			</h2>
 			<table>
 				<tr>
 					<th>Name</th>
 					<th>Batch</th>
-					<th>College ID</th>
 				</tr>
-
 				{raw_json.data.students.map(student => {
-					return <tr key={student.name}>
-						<th>{student.name}</th>
-						<th>{student.batch}</th>
-						<th>{student.college_id}</th>
+					return <tr key={student._id}>
+						<td>{student.name}</td>
+						<td>{student.batch}</td>
 					</tr>
 				})}
-
 			</table>
 
-			<Carousel data={similarColleges} viewDetails={(id) => props.history.push(`/colleges/view/${id}`, { id })} />
+			<h2>
+				Similar Colleges
+			</h2>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Established in</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Country</th>
+					<th># of Students</th>
+				</tr>
+				{raw_json.data.similar_colleges.map(similarCollege => {
+					return <tr key={similarCollege._id}>
+						<td>{similarCollege.name}</td>
+						<td>{similarCollege.year}</td>
+						<td>{similarCollege.city}</td>
+						<td>{similarCollege.state}</td>
+						<td>{similarCollege.country}</td>
+						<td>{similarCollege.no_of_students}</td>
+					</tr>
+				})}
+			</table>
+
 		</div>
 	)
 }
