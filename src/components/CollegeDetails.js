@@ -68,6 +68,7 @@ function CollegeDetails(props) {
           <tr>
             <th>Name</th>
             <th>Batch</th>
+            <th>Skills</th>
           </tr>
         </thead>
         <tbody>
@@ -78,6 +79,7 @@ function CollegeDetails(props) {
                   <tr key={student._id}>
                     <td>{student.name}</td>
                     <td>{student.batch}</td>
+                    <td>{student.skills.join(", ")}</td>
                   </tr>
                 );
               })}
@@ -101,7 +103,12 @@ function CollegeDetails(props) {
             : collegeDetails.similar_colleges.map((similarCollege) => {
                 return (
                   <tr key={similarCollege._id}>
-                    <td>{similarCollege.name}</td>
+                    <td>
+                      <a href={`/colleges/view/${similarCollege._id}`} style={{color: "blue"}}>
+                        {similarCollege.name}
+                      </a>
+                    </td>
+
                     <td>{similarCollege.year}</td>
                     <td>{similarCollege.city}</td>
                     <td>{similarCollege.state}</td>

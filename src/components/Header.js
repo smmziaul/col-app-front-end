@@ -1,22 +1,25 @@
-import React from 'react'
+import { blockStatement } from "@babel/types";
+import React from "react";
 
 const Header = () => {
-    const mystyle = {
-        color: "white",
-        backgroundColor: "DodgerBlue",
-        padding: "10px",
-        fontFamily: "Arial",
-        textAlign: "center",
+  const mystyle = {
+    color: "white",
+    backgroundColor: "green",
+    padding: "10px",
+    fontFamily: "Arial",
+    textAlign: "center",
+  };
+  const headerStyle = {
+    display: "inline-block",
+  };
 
-    };
+  return (
+    <header style={mystyle}>
+      <a href="/">
+        <h1 style={headerStyle}>Col-App, a College-Finder App</h1>
+      </a>
+    </header>
+  );
+};
 
-    return (
-        <header style={mystyle}>
-            <h1>
-                Col-App, a College-Finder App
-            </h1>
-        </header>
-    )
-}
-
-export default Header
+export default Header;
