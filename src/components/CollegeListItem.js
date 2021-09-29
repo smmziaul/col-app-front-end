@@ -1,15 +1,19 @@
 import React from 'react'
+import { withRouter } from 'react-router';
 
 import classes from './CollegeListItem.module.css';
 
-export default function CollegeListItem({ name, location, id }) {
+function CollegeListItem(props) {
+	const { name, state, _id, viewDetails } = props;
 	return (
 		<div className={classes.CollegeListItem}>
 			<div className={classes.CollegeDetails}>
 				<div>{name}</div>
-				<span>{location}</span>
+				<span>{state}</span>
 			</div>
-			<a href={"/"+id}>View Details</a>
+			<button onClick={viewDetails}>View Details</button>
 		</div>
 	)
 }
+
+export default CollegeListItem;

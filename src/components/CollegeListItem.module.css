@@ -13,15 +13,16 @@
 	box-sizing: border-box;
 }
 
-.CollegeListItem a {
+.CollegeListItem button {
 	background-color: transparent;
 	outline: none;
 	border: none;
+	border-bottom: 1px solid #E56C5B;
 	color: #E56C5B;
 	font-size: 18px;
 }
 
-.CollegeListItem a:hover {
+.CollegeListItem button:hover {
 	cursor: pointer;
 	opacity: 0.75;
 }
